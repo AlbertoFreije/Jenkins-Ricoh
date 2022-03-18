@@ -1,22 +1,17 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3.8.1-adoptopenjdk-11'
+      args '-v /root/.m2:/root/.m2'
+    }
+
+  }
   stages {
-    stage('Fluffy Build') {
+    stage('Build') {
       steps {
-        echo 'Placeholder'
-        sh 'echo Edited Placeholder.'
+        sh 'mvn -B -DskipTests clean package'
       }
     }
-    stage('Fluffy Test') {
-      steps {
-        sh 'sleep 5'
-        sh 'echo Success!'
-      }
-    }
-    stage('Fluffy Deploy') {
-      steps {
-        echo 'Placeholder'
-      }
-    }
+
   }
 }
