@@ -8,11 +8,6 @@ pipeline {
   }
   stages {
     stage('Build') {
-      agent {
-        node {
-          label 'java11'
-        }
-
       }
       steps {
         sh 'mvn -B -DskipTests clean package'
